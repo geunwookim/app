@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Application</string>
+
+    <string name="first_fragment">Hello First fragment</string>
+    <string name="second_fragment">Hello Second fragment</string>
+    <string name="third_fragment">Hello Third fragment</string>
+
+    <string name="bottom_navigation_menu_first">First</string>
+    <string name="bottom_navigation_menu_second">Second</string>
+    <string name="bottom_navigation_menu_third">Third</string>
+
+    <string name="image_description">This is image</string>
+    <string name="fab_description">fab</string>
+
+    <string name="add_food">Add Food</string>
+    <string name="food_name_edit_text">음식 이름</string>
+    <string name="food_ingredients_edit_text">재료</string>
+    <string name="food_recipe_edit_text">레시피</string>
+    <string name="done_button_text">추가</string>
+
+    <string name="food_detail_name"> </string>
+    <string name="food_detail_ingredients"> </string>
+    <string name="food_detail_recipe"> </string>
+    <string name="remove_this_food">삭제</string>
+
+</resources>

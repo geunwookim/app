@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/firstFragment"
+        android:enabled="true"
+        android:title="@string/bottom_navigation_menu_first"
+        android:icon="@drawable/ic_baseline_looks_one_24"/>
+
+    <item
+        android:id="@+id/secondFragment"
+        android:enabled="true"
+        android:title="@string/bottom_navigation_menu_second"
+        android:icon="@drawable/ic_baseline_looks_two_24"/>
+
+    <item
+        android:id="@+id/thirdFragment"
+        android:enabled="true"
+        android:title="@string/bottom_navigation_menu_third"
+        android:icon="@drawable/ic_baseline_looks_3_24"/>
+
+</menu>
