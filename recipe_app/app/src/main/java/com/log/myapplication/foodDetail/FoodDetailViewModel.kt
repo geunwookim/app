@@ -1,31 +1,19 @@
 package com.log.myapplication.foodDetail
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.log.myapplication.data.FoodData
-import com.log.myapplication.data.FoodDataSource
+import com.log.myapplication.repository.FoodRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class FoodDetailViewModel(private val foodDataSource: FoodDataSource) : ViewModel() {
-
+@HiltViewModel
+class FoodDetailViewModel @Inject constructor(private val foodRepositoryImpl: FoodRepositoryImpl) : ViewModel()
+{
     fun getFoodForId(id: Long): FoodData? {
-        return foodDataSource.getFoodForId(id)
+        return foodRepositoryImpl.getFoodForId(id)
     }
 
     fun removeFood(foodData: FoodData) {
-        foodDataSource.removeFood(foodData)
-    }
-}
-
-class FoodDetailViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
-
-    override fun <T: ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(FoodDetailViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return FoodDetailViewModel(
-                foodDataSource = FoodDataSource.getDataSource(context.resources)
-            ) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        foodRepositoryImpl.removeFood(foodData)
     }
 }

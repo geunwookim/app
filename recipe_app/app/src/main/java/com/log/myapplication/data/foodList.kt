@@ -1,9 +1,8 @@
 package com.log.myapplication.data
 
-import android.content.res.Resources
 import com.log.myapplication.R
 
-fun foodList(resources: Resources): List<FoodData> {
+fun foodList(): List<FoodData> {
     return listOf(
         FoodData(
             id = 1,
@@ -11,6 +10,7 @@ fun foodList(resources: Resources): List<FoodData> {
             ingredients = "쌀, 채소",
             recipe = "1. 재료를 넣는다\r\n" +
                     "2. 비빈다",
+            imageUri = null,
             image = R.drawable.korea
         ),
         FoodData(
@@ -19,6 +19,7 @@ fun foodList(resources: Resources): List<FoodData> {
             ingredients = "소고기, 채소",
             recipe = "1. 이건 잘 모름\r\n"+
                     "2. 알아서 맛있게 해 먹는다",
+            imageUri = null,
             image = R.drawable.korea
         ),
         FoodData(
@@ -26,6 +27,7 @@ fun foodList(resources: Resources): List<FoodData> {
             name = "케밥",
             ingredients = "케, 밥",
             recipe = "1. 케밥 맛있지",
+            imageUri = null,
             image = R.drawable.korea
         ),
         FoodData(
@@ -33,6 +35,7 @@ fun foodList(resources: Resources): List<FoodData> {
             name = "파스타",
             ingredients ="파스타면, 채소",
             recipe = "1. 파스타 더 맛있지",
+            imageUri = null,
             image = R.drawable.korea
         ),
         FoodData(
@@ -40,6 +43,7 @@ fun foodList(resources: Resources): List<FoodData> {
             name = "카레",
             ingredients = "밥, 카레가루",
             recipe = "1. 난이랑 라씨 맛있지",
+            imageUri = null,
             image = R.drawable.korea
         )
     )

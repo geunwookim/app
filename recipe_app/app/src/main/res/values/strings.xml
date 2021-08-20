@@ -12,7 +12,7 @@
     <string name="image_description">This is image</string>
     <string name="fab_description">fab</string>
 
-    <string name="add_food">Add Food</string>
+    <string name="add_food">레시피 추가하기</string>
     <string name="food_name_edit_text">음식 이름</string>
     <string name="food_ingredients_edit_text">재료</string>
     <string name="food_recipe_edit_text">레시피</string>

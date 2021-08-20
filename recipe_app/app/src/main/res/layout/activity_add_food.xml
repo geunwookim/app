@@ -15,7 +15,8 @@
         android:paddingBottom="16dp"
         android:text="@string/add_food"
         android:textAlignment="center"
-        android:textAppearance="?attr/textAppearanceHeadline4" />
+        android:textAppearance="?attr/textAppearanceHeadline4"
+        android:gravity="center_horizontal" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -64,11 +65,21 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/add_food_image"
+        android:layout_width="300dp"
+        android:layout_height="240dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_gravity="center" />
+
     <Button
         android:id="@+id/done_button"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
         android:text="@string/done_button_text" />
 </LinearLayout>

@@ -3,7 +3,9 @@ package com.log.myapplication.fragment.first
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,29 +17,26 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.log.myapplication.R
 import com.log.myapplication.R.*
-import com.log.myapplication.addFood.AddFoodActivity
-import com.log.myapplication.addFood.FOOD_INGREDIENTS
-import com.log.myapplication.addFood.FOOD_NAME
-import com.log.myapplication.addFood.FOOD_RECIPE
+import com.log.myapplication.addFood.*
 import com.log.myapplication.data.FoodData
 import com.log.myapplication.databinding.FragmentFirstBinding
 import com.log.myapplication.foodDetail.FoodDetailActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 const val FOOD_ID = "food id"
 
+@AndroidEntryPoint
 class FirstFragment : Fragment() {
     private lateinit var mBinding : FragmentFirstBinding
     private lateinit var recyclerView : RecyclerView
     private lateinit var resultLauncher : ActivityResultLauncher<Intent>
-    private val foodViewModel by viewModels<FoodViewModel> {
-        FoodViewModelFactory(requireContext())
-    }
+    private val foodViewModel : FoodViewModel by viewModels()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = DataBindingUtil.inflate(inflater, layout.fragment_first, container, false)
 
         val foodAdapter = FoodAdapter { foodData ->  adapterOnClick(foodData) }
@@ -45,7 +44,7 @@ class FirstFragment : Fragment() {
         recyclerView = mBinding.root.findViewById(R.id.recycler_view)
         recyclerView.adapter = foodAdapter
 
-        foodViewModel.foodLiveData.observe(viewLifecycleOwner, {
+        foodViewModel.getFoodList().observe(viewLifecycleOwner, {
             it?.let {
                 foodAdapter.submitList(it as MutableList<FoodData>)
             }
@@ -63,8 +62,8 @@ class FirstFragment : Fragment() {
                     val foodName = data.getStringExtra(FOOD_NAME)
                     val foodIngredients = data.getStringExtra(FOOD_INGREDIENTS)
                     val foodRecipe = data.getStringExtra(FOOD_RECIPE)
-
-                    foodViewModel.insertFood(foodName, foodIngredients, foodRecipe)
+                    val foodImageUri = data.getStringExtra(FOOD_IMAGE)
+                    foodViewModel.insertFood(foodName, foodIngredients, foodRecipe, foodImageUri)
                 }
             }
         }

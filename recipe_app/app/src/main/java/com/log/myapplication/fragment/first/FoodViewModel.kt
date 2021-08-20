@@ -1,19 +1,18 @@
 package com.log.myapplication.fragment.first
 
-import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.log.myapplication.R
 import com.log.myapplication.data.FoodData
-import com.log.myapplication.data.FoodDataSource
-import java.lang.IllegalArgumentException
+import com.log.myapplication.repository.FoodRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlin.random.Random
 
-class FoodViewModel(private val foodDataSource: FoodDataSource) : ViewModel() {
+@HiltViewModel
+class FoodViewModel @Inject constructor(private val foodRepositoryImpl: FoodRepositoryImpl) : ViewModel() {
 
-    val foodLiveData = foodDataSource.getFoodList()
-
-    fun insertFood(foodName: String?, foodIngredients: String?, foodRecipe: String?) {
+    fun insertFood(foodName: String?, foodIngredients: String?, foodRecipe: String?, foodImageUri: String?) {
         if (foodName == null || foodIngredients == null || foodRecipe == null) {
             return
         }
@@ -24,22 +23,14 @@ class FoodViewModel(private val foodDataSource: FoodDataSource) : ViewModel() {
             foodName,
             foodIngredients,
             foodRecipe,
+            foodImageUri,
             foodImage
         )
 
-        foodDataSource.addFood(newFood)
+        foodRepositoryImpl.addFood(newFood)
     }
-}
 
-class FoodViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(FoodViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return FoodViewModel(
-                foodDataSource = FoodDataSource.getDataSource(context.resources)
-            ) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
+    fun getFoodList() : LiveData<List<FoodData>> {
+        return foodRepositoryImpl.getFoodList()
     }
 }
