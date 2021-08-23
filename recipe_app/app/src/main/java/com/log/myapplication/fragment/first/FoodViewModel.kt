@@ -12,7 +12,7 @@ import kotlin.random.Random
 @HiltViewModel
 class FoodViewModel @Inject constructor(private val foodRepositoryImpl: FoodRepositoryImpl) : ViewModel() {
 
-    fun insertFood(foodName: String?, foodIngredients: String?, foodRecipe: String?, foodImageUri: String?) {
+    fun insertFood(foodName: String?, foodIngredients: String?, foodRecipe: String?, foodImageByteArray: ByteArray?) {
         if (foodName == null || foodIngredients == null || foodRecipe == null) {
             return
         }
@@ -23,7 +23,7 @@ class FoodViewModel @Inject constructor(private val foodRepositoryImpl: FoodRepo
             foodName,
             foodIngredients,
             foodRecipe,
-            foodImageUri,
+            foodImageByteArray,
             foodImage
         )
 

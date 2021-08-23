@@ -3,9 +3,7 @@ package com.log.myapplication.fragment.first
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,8 +60,8 @@ class FirstFragment : Fragment() {
                     val foodName = data.getStringExtra(FOOD_NAME)
                     val foodIngredients = data.getStringExtra(FOOD_INGREDIENTS)
                     val foodRecipe = data.getStringExtra(FOOD_RECIPE)
-                    val foodImageUri = data.getStringExtra(FOOD_IMAGE)
-                    foodViewModel.insertFood(foodName, foodIngredients, foodRecipe, foodImageUri)
+                    val foodImageByteArray : ByteArray? = data.getByteArrayExtra(FOOD_IMAGE)
+                    foodViewModel.insertFood(foodName, foodIngredients, foodRecipe, foodImageByteArray)
                 }
             }
         }

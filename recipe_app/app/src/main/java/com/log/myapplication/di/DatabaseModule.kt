@@ -1,7 +1,6 @@
 package com.log.myapplication.di
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
 import com.log.myapplication.data.AppDatabase
 import com.log.myapplication.data.FoodDao

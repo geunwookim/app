@@ -1,17 +1,11 @@
 package com.log.myapplication.fragment.first
 
-import android.content.Intent
-import android.net.Uri
-import android.os.Build
-import android.provider.DocumentsContract
-import android.util.Log
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -39,8 +33,9 @@ class FoodAdapter(private val onClick: (FoodData) -> Unit)
             currentFood = foodData
 
             foodTextView.text = foodData.name
-            if(foodData.imageUri != null) {
-                foodImageView.setImageURI(Uri.parse(foodData.imageUri))
+            if(foodData.imageByteArray != null) {
+                val bitmap = BitmapFactory.decodeByteArray(foodData.imageByteArray, 0, foodData.imageByteArray.size)
+                foodImageView.setImageBitmap(bitmap)
             } else {
                 if(foodData.image != null) {
                     foodImageView.setImageResource(foodData.image)

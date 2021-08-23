@@ -24,7 +24,8 @@ class FoodRepositoryImpl @Inject constructor(private val foodDao: FoodDao) : Foo
             _foodLiveData.postValue(listOf(foodData))
         } else {
             val updatedList = currentList.toMutableList()
-            updatedList.add(0, foodData)
+            val lastIndex = updatedList.lastIndex
+            updatedList.add(lastIndex+1, foodData)
             _foodLiveData.postValue(updatedList)
         }
         executorService.execute {

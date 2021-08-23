@@ -4,10 +4,11 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.log.myapplication.databinding.ActivityAddFoodBinding
+import java.io.ByteArrayOutputStream
 
 const val FOOD_NAME = "name"
 const val FOOD_INGREDIENTS = "ingredients"
@@ -29,10 +31,10 @@ class AddFoodActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityAddFoodBinding
     private lateinit var addFoodName: TextInputEditText
     private lateinit var addFoodIngredients: TextInputEditText
-    private lateinit var addFoodRecipe: TextInputEditText
-    private lateinit var addFoodImage: ImageView
+    private lateinit var addFoodRecipe : TextInputEditText
+    private lateinit var addFoodImage : ImageView
     private lateinit var resultLauncher : ActivityResultLauncher<Intent>
-    private lateinit var imageUri: String
+    private lateinit var imageByteArray : ByteArray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +55,14 @@ class AddFoodActivity : AppCompatActivity() {
                 val intentData: Intent? = result.data
                 intentData?.let { data ->
                     mBinding.addFoodImage.setImageURI(data.data)
-                    imageUri = data.data.toString()
+                    val inputStream = contentResolver.openInputStream(data.data!!)
+
+                    val imageBitmap = BitmapFactory.decodeStream(inputStream)
+                    val bitmapStream = ByteArrayOutputStream()
+                    imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, bitmapStream)
+                    imageByteArray = bitmapStream.toByteArray()
+
+                    inputStream?.close()
                 }
             }
         }
@@ -116,7 +125,7 @@ class AddFoodActivity : AppCompatActivity() {
             resultIntent.putExtra(FOOD_NAME, name)
             resultIntent.putExtra(FOOD_INGREDIENTS, ingredients)
             resultIntent.putExtra(FOOD_RECIPE, recipe)
-            resultIntent.putExtra(FOOD_IMAGE, imageUri.toString())
+            resultIntent.putExtra(FOOD_IMAGE, imageByteArray)
             setResult(Activity.RESULT_OK, resultIntent)
         }
         finish()

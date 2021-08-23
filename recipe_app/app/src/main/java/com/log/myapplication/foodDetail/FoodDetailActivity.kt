@@ -1,5 +1,6 @@
 package com.log.myapplication.foodDetail
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -39,10 +40,15 @@ class FoodDetailActivity : AppCompatActivity() {
         currentFoodId?.let {
             val currentFood = foodDetailViewModel.getFoodForId(it)
             foodName.text = currentFood?.name
-            if(currentFood?.image == null) {
-                foodImage.setImageResource(R.drawable.korea)
+            if(currentFood?.imageByteArray != null) {
+                val bitmap = BitmapFactory.decodeByteArray(currentFood.imageByteArray, 0, currentFood.imageByteArray.size)
+                foodImage.setImageBitmap(bitmap)
             } else {
-                foodImage.setImageResource(currentFood.image)
+                if(currentFood?.image != null) {
+                    foodImage.setImageResource(currentFood.image)
+                } else {
+                    foodImage.setImageResource(R.drawable.korea)
+                }
             }
             foodIngredients.text = currentFood?.ingredients
             foodRecipe.text = currentFood?.recipe
