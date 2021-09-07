@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.log.myapplication"
-        minSdk 15
+        minSdk 17
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -59,4 +59,6 @@ dependencies {
     // Hilt dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 }

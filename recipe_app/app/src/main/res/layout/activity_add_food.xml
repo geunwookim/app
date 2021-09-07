@@ -71,7 +71,18 @@
         android:layout_height="240dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/addFoodImageButton"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:text="@string/add_food_image_button_text" />
 
     <Button
         android:id="@+id/done_button"

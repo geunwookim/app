@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/firstFragment"
-        android:name="com.log.myapplication.fragment.first.FirstFragment"
+        android:name="com.log.gwkim.fragment.first.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.log.myapplication.fragment.second.SecondFragment"
+        android:name="com.log.gwkim.fragment.second.SecondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/thirdFragment"
-        android:name="com.log.myapplication.fragment.third.ThirdFragment"
+        android:name="com.log.gwkim.fragment.third.ThirdFragment"
         android:label="fragment_third"
         tools:layout="@layout/fragment_third" >
         <action
